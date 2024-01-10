@@ -3,6 +3,9 @@ document.addEventListener("keyup", handlePress)
 document.addEventListener("mousedown", handleClick)
 document.addEventListener("mouseup", handleClick)
 
+// const keys = document.querySelectorAll(".key")
+// keys.forEach(key => key.addEventListener("transitionend", removeTransition))
+
 function handlePress(event) {
     const code = event.keyCode.toString()
     let elements = document.querySelectorAll(`[data-key='${code}']`)
@@ -10,6 +13,7 @@ function handlePress(event) {
 
     if (event.type === "keydown") {
         elements[0].classList.add('playing')
+        elements[1].currentTime = 0
         elements[1].play()
     }
 
@@ -31,9 +35,15 @@ function handleClick(event) {
     if (event.type === "mousedown") {
         element.classList.add('playing')
         let audio = document.querySelector(`audio[data-key='${code}']`)
+        audio.currentTime = 0
         audio.play()
     }
     else {
         element.classList.remove('playing')
     }
 }
+
+// function removeTransition(e) {
+//     if (e.propertyName !== 'transform') return;
+//     this.classList.remove('playing')
+// }
