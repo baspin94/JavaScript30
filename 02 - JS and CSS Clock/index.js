@@ -14,14 +14,35 @@ const secondHand = document.querySelector(".second-hand")
 function setTime(){
     // Get Current Time
     const date = new Date()
+
     const hours = convertHours(date)
+    const hourDegrees = ((hours/12) * 360) + 90
+    
     const minutes = date.getMinutes()
+    const minuteDegrees = ((minutes/60) * 360) + 90
+
     const seconds = date.getSeconds()
+    const secondDegrees = ((seconds/60) * 360) + 90
 
     // Set Position of Hands
-    secondHand.style.transform = `rotate(${90 + seconds*6}deg)`
-    minuteHand.style.transform = `rotate(${90 + minutes*6}deg)`
-    hourHand.style.transform = `rotate(${90 + hours*30}deg)`
+    secondHand.style.transform = `rotate(${secondDegrees}deg)`
+    minuteHand.style.transform = `rotate(${minuteDegrees}deg)`
+    hourHand.style.transform = `rotate(${hourDegrees}deg)`
+
+    if (secondDegrees === 90) {
+        secondHand.style.transition = "0s"
+        minuteHand.style.transition = "0s"
+        hourHand.style.transition = "0s"
+    } else {
+        secondHand.style.transition = "all 0.05s"
+        secondHand.style.transitionTimingFunction = "cubic-bezier(0.1, 2.7, 0.58, 1)"
+
+        minuteHand.style.transition = "all 0.05s"
+        minuteHand.style.transitionTimingFunction = "cubic-bezier(0.1, 2.7, 0.58, 1)"
+
+        hourHand.style.transition = "all 0.05s"
+        hourHand.style.transitionTimingFunction = "cubic-bezier(0.1, 2.7, 0.58, 1)"
+    }
 }
 
 setInterval(setTime, 1000)
