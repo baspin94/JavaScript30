@@ -1,10 +1,3 @@
-// Convert Hours to 12 Hour Time
-function convertHours(date) {
-    const hours = date.getHours()
-    if (hours < 12) return hours
-    return hours - 12
-}
-
 // Grab Clock Hands
 const hourHand = document.querySelector(".hour-hand")
 const minuteHand = document.querySelector(".min-hand")
@@ -15,7 +8,7 @@ function setTime(){
     // Get Current Time
     const date = new Date()
 
-    const hours = convertHours(date)
+    const hours = date.getHours()
     const hourDegrees = ((hours/12) * 360) + 90
     
     const minutes = date.getMinutes()
