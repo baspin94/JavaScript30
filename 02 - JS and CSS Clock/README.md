@@ -42,20 +42,17 @@ I thought my clock looked nice and functional as is, and hadn't even considered 
 The difficult part here was figuring out how to remedy the blip that occurred when a hand completes a complete rotation and resets position, which Wes said could be resolved with JS functionality to briefly remove the `transition` property. However, I later found out that when I disabled `transition`, the `transition-timing-function` wouldn't come back automatically, and I would have to add some additional logic to my code to get that working again.
 
 ```javascript
+const hands = [hourHand, minuteHand, secondHand]
+//
 if (secondDegrees === 90) {
-        secondHand.style.transition = "0s"
-        minuteHand.style.transition = "0s"
-        hourHand.style.transition = "0s"
-} else {
-    secondHand.style.transition = "all 0.05s"
-    secondHand.style.transitionTimingFunction = "cubic-bezier(0.1, 2.7, 0.58, 1)"
-
-    minuteHand.style.transition = "all 0.05s"
-    minuteHand.style.transitionTimingFunction = "cubic-bezier(0.1, 2.7, 0.58, 1)"
-
-    hourHand.style.transition = "all 0.05s"
-    hourHand.style.transitionTimingFunction = "cubic-bezier(0.1, 2.7, 0.58, 1)"
-}
+        for (let hand of hands) hand.style.transition = "0s"
+    
+    } else {
+        for (let hand of hands) {
+            hand.style.transition = "all 0.05s"
+            hand.style.transitionTimingFunction = "cubic-bezier(0.1, 2.7, 0.58, 1)"
+        }
+    }
 ```
 ## Next Steps
 1. Try moving the hands by incrementation from the original time instead of setting a new time with each interval. With the methods I'm using right now, the hour hand stays on the hour until the next hour, instead of gradually moving in between the two hours like it would on a clock.

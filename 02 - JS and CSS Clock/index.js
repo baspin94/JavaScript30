@@ -3,6 +3,8 @@ const hourHand = document.querySelector(".hour-hand")
 const minuteHand = document.querySelector(".min-hand")
 const secondHand = document.querySelector(".second-hand")
 
+const hands = [hourHand, minuteHand, secondHand]
+
 // Move Hands Ahead
 function setTime(){
     // Get Current Time
@@ -23,18 +25,13 @@ function setTime(){
     hourHand.style.transform = `rotate(${hourDegrees}deg)`
 
     if (secondDegrees === 90) {
-        secondHand.style.transition = "0s"
-        minuteHand.style.transition = "0s"
-        hourHand.style.transition = "0s"
+        for (let hand of hands) hand.style.transition = "0s"
+    
     } else {
-        secondHand.style.transition = "all 0.05s"
-        secondHand.style.transitionTimingFunction = "cubic-bezier(0.1, 2.7, 0.58, 1)"
-
-        minuteHand.style.transition = "all 0.05s"
-        minuteHand.style.transitionTimingFunction = "cubic-bezier(0.1, 2.7, 0.58, 1)"
-
-        hourHand.style.transition = "all 0.05s"
-        hourHand.style.transitionTimingFunction = "cubic-bezier(0.1, 2.7, 0.58, 1)"
+        for (let hand of hands) {
+            hand.style.transition = "all 0.05s"
+            hand.style.transitionTimingFunction = "cubic-bezier(0.1, 2.7, 0.58, 1)"
+        }
     }
 }
 
