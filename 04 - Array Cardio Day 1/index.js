@@ -32,7 +32,8 @@ const boulevards = ["Boulevard Auguste-Blanqui", "Boulevard Barbès", "Boulevard
 // Array.prototype.filter() => creates a shallow copy, returns new array
 // 1. Filter the list of inventors for those who were born in the 1500's
 const century16 = inventors.filter((inventor) => (inventor.year >= 1500 && inventor.year < 1600))
-console.log("Question 1:", century16)
+console.log("Question 1:")
+console.table(century16)
 
 // Array.prototype.map() => creates new array
 // 2. Give us an array of the inventors first and last names
@@ -45,7 +46,8 @@ function compareInventors(inventor1, inventor2) {
     return inventor1.year - inventor2.year
 }
 const inventorsByBirthdate = [...inventors].sort(compareInventors)
-console.log("Question 3:", inventorsByBirthdate)
+console.log("Question 3:")
+console.table(inventorsByBirthdate)
 
 // Array.prototype.reduce()
 // 4. How many years did all the inventors live all together?
@@ -60,11 +62,12 @@ function compareLifespan(inventor1, inventor2){
     let lifespan1 = inventor1.passed - inventor1.year
     let lifespan2 = inventor2.passed - inventor2.year
 
-    return lifespan1 - lifespan2
+    return lifespan2 - lifespan1
 }
 
 const inventorsByLifespan = [...inventors].sort(compareLifespan)
-console.log("Question 5:", inventorsByLifespan)
+console.log("Question 5:")
+console.table(inventorsByLifespan)
 
 // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
 // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
@@ -74,7 +77,8 @@ console.log("Question 6:", deBoulevards)
 // 7. sort Exercise
 // Sort the people alphabetically by last name
 const sortedPeople = [...people].sort()
-console.log("Question 7:", sortedPeople)
+console.log("Question 7:")
+console.table(sortedPeople)
 
 // 8. Reduce Exercise
 // Sum up the instances of each of these
